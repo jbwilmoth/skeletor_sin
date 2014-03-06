@@ -16,9 +16,16 @@ require 'active_record'
 require 'logger'
 
 require 'sinatra'
+require 'sinatra/namespace'
 
 require 'erb'
 require 'bcrypt'
+
+if development?
+  require 'sinatra/reloader'
+  require 'pry'
+  require 'pry-nav'
+end
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
