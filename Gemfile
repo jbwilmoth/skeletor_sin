@@ -14,18 +14,22 @@ gem 'activesupport'
 gem 'activerecord'
 
 gem 'rake'
+
+gem 'pry'
+gem 'pry-nav'
+
+gem 'shotgun'
+
 gem 'bcrypt'
 gem 'bcrypt-ruby'
 
-group :development do
-  gem 'shotgun'
-  gem 'pry'
-  gem 'pry-nav'
+group :test do
+  gem 'shoulda-matchers'
+  gem 'rack-test'
 end
 
-
-group :test do
-  gem 'faker'
+group :test, :development do
   gem 'rspec'
-  gem 'shoulda-matchers'
+  gem 'factory_girl'
+  gem 'faker'
 end
