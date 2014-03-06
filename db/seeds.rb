@@ -1,21 +1,24 @@
 require 'faker'
 
-# create a few users
-User.create :name => 'Dev Bootcamp Student', :email => 'me@example.com', :password => 'password'
-5.times do
-  User.create :name => Faker::Name.name, :email => Faker::Internet.email, :password => 'password'
+User.delete_all
+Event.delete_all
+
+users = 500.times.map do
+  User.create :first_name => Faker::Name.first_name,
+              :last_name  => Faker::Name.last_name,
+              :email      => Faker::Internet.email,
+              :password   => "password", 
+              :password_confirmation => "password",
+              :birthdate  => Date.today - 15.years - rand(20000).days
 end
 
-# create a few technical skills
-computer_skills = %w(Ruby Sinatra Rails JavaScript jQuery HTML CSS)
-computer_skills.each do |skill|
-  Skill.create :name => skill, :context => 'technical'
-end
+100.times do
+  start_time = Time.now + (rand(61) - 30).days
+  end_time   = start_time + (1 + rand(6)).hours
 
-# create a few creative skills
-design_skills = %w(Photoshop Illustrator Responsive-Design)
-design_skills.each do |skill|
-  Skill.create :name => skill, :context => 'creative'
+  Event.create :user_id    => users[rand(users.length)].id,
+               :name       => Faker::Company.name,
+               :location   => "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
+               :starts_at  => start_time,
+               :ends_at    => end_time
 end
-
-# TODO: create associations between users and skills

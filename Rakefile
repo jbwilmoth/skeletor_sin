@@ -1,4 +1,6 @@
 require 'rake'
+require 'rspec/core/rake_task'
+
 
 require ::File.expand_path('../config/environment', __FILE__)
 
@@ -87,13 +89,13 @@ namespace :db do
   desc "Create the database at #{DB_NAME}"
   task :create do
     puts "Creating database #{DB_NAME} if it doesn't exist..."
-    exec("createdb #{DB_NAME}")
+    exec("touch #{DB_NAME}")
   end
 
   desc "Drop the database at #{DB_NAME}"
   task :drop do
     puts "Dropping database #{DB_NAME}..."
-    exec("dropdb #{DB_NAME}")
+    exec("rm #{DB_NAME}")
   end
 
   desc "Migrate the database (options: VERSION=x, VERBOSE=false, SCOPE=blog)."
@@ -121,15 +123,7 @@ task "console" do
   exec "irb -r./config/environment"
 end
 
-begin
-  require 'rspec/core/rake_task'
-
 desc "Run the specs"
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.rspec_opts = %w[--color]
-  t.pattern = 'spec/*_spec.rb'
-end
-rescue LoadError
-end
+RSpec::Core::RakeTask.new(:spec)
 
-task :default  => :specs
+task :default  => :spec
