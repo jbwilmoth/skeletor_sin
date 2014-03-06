@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     activemodel (3.2.12)
       activesupport (= 3.2.12)
@@ -13,19 +13,33 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    backports (3.6.0)
+    bcrypt (3.1.7)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
+    coderay (1.1.0)
     daemons (1.1.9)
     diff-lcs (1.2.1)
     eventmachine (1.0.3)
+    factory_girl (4.4.0)
+      activesupport (>= 3.0.0)
     faker (1.1.2)
       i18n (~> 0.5)
     i18n (0.6.4)
+    method_source (0.8.2)
     multi_json (1.6.1)
     pg (0.14.1)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-nav (0.2.3)
+      pry (~> 0.9.10)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
     rake (10.0.3)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
@@ -37,10 +51,20 @@ GEM
     rspec-mocks (2.13.0)
     shotgun (0.9)
       rack (>= 1.0)
+    shoulda-matchers (2.5.0)
+      activesupport (>= 3.0.0)
     sinatra (1.3.6)
       rack (~> 1.4)
       rack-protection (~> 1.3)
       tilt (~> 1.3, >= 1.3.3)
+    sinatra-contrib (1.3.2)
+      backports (>= 2.0)
+      eventmachine
+      rack-protection
+      rack-test
+      sinatra (~> 1.3.0)
+      tilt (~> 1.3)
+    slop (3.4.7)
     thin (1.5.0)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -54,11 +78,18 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activesupport
+  bcrypt
   bcrypt-ruby
+  factory_girl
   faker
   pg
+  pry
+  pry-nav
+  rack-test
   rake
   rspec
   shotgun
+  shoulda-matchers
   sinatra
+  sinatra-contrib
   thin
